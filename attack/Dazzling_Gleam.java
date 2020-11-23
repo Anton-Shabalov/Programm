@@ -1,6 +1,7 @@
+package attack;
 import ru.ifmo.se.pokemon.*;
 
-class Dazzling_Gleam extends SpecialMove {
+public class Dazzling_Gleam extends SpecialMove {
     @Override
     protected String describe() {
         return "использует: Dazzling Gleam";

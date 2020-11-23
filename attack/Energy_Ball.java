@@ -1,6 +1,7 @@
+package attack;
 import ru.ifmo.se.pokemon.*;
 
-class Energy_Ball extends SpecialMove {
+public class Energy_Ball extends SpecialMove {
     @Override
     protected String describe() {
         return "использует: Energy Ball, которая с вероятностью 10% понижает специальную защиту противника на 1";

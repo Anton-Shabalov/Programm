@@ -1,6 +1,7 @@
+package attack;
 import ru.ifmo.se.pokemon.*;
 
-class Sleep_Powder extends StatusMove {
+public class Sleep_Powder extends StatusMove {
     @Override
     protected void applyOppEffects(Pokemon p) {
         int a = (int) (Math.random() * (4-1) )+1;

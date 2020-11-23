@@ -1,6 +1,7 @@
+package attack;
 import ru.ifmo.se.pokemon.*;
 
-class Bulldoze extends PhysicalMove{
+public class Bulldoze extends PhysicalMove{
     @Override
     protected String describe() {
         return "использует: Bulldoze и понижает значение скорости на 1";

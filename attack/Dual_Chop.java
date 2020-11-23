@@ -1,6 +1,7 @@
+package attack;
 import ru.ifmo.se.pokemon.*;
 
-class Dual_Chop extends PhysicalMove {
+public class Dual_Chop extends PhysicalMove {
     @Override
     protected String describe() {
         return "использует: Dual Chop, который атакует 2 раза ";

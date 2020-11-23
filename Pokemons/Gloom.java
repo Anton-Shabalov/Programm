@@ -1,5 +1,6 @@
-
+package Pokemons;
 import ru.ifmo.se.pokemon.*;
+import attack.*;
 
 public class Gloom extends Oddish {
     public Gloom(String name,int level ){

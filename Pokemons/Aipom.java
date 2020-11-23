@@ -1,4 +1,7 @@
+package Pokemons;
 import ru.ifmo.se.pokemon.*;
+import attack.*;
+
 
 public class Aipom extends Pokemon{
     public Aipom(String name,int level ){

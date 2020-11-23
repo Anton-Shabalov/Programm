@@ -1,6 +1,7 @@
+package attack;
 import ru.ifmo.se.pokemon.*;
 
-class Double_Team extends StatusMove {
+public class Double_Team extends StatusMove {
     @Override
     protected void applySelfEffects(Pokemon p){
         p.setMod(Stat.EVASION, +1);

@@ -1,6 +1,7 @@
+package attack;
 import ru.ifmo.se.pokemon.*;
 
-class Mud_Shot extends SpecialMove {
+public class Mud_Shot extends SpecialMove {
     @Override
     protected String describe() {
         return "использует: Mud Shot и понижает значение скорости на 1 у противника";

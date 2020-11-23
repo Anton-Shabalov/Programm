@@ -1,6 +1,7 @@
+package attack;
 import ru.ifmo.se.pokemon.*;
 
-class Confide extends StatusMove {
+public class Confide extends StatusMove {
     @Override
     protected String describe() {
         return "использует: Confide и понижает значение специальной аттаки на 1 у противника";

@@ -1,4 +1,6 @@
+package Pokemons;
 import ru.ifmo.se.pokemon.*;
+import attack.*;
 
 public class Vileplume extends Gloom {
     public Vileplume(String name,int level ){
