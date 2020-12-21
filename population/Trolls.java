@@ -3,14 +3,13 @@ import inter.swim;
 import inter.talk;
 import tools.randomsi;
 import world.River;
+import enums.*;
 
 
 public enum Trolls implements swim,talk {
     MOOMIN("Муми-тролль",6,1) ,SMUS("Снусмумрик",2);
     private String name;
     private int hp;
-    private static River river;
-    private static River river2;
     private int id;
 
     Trolls(String name,int hp,int id){
@@ -50,7 +49,7 @@ public enum Trolls implements swim,talk {
     }
 
     @Override
-    public boolean rowing() {
+    public boolean rowing(River river) {
         if (river.getCondition()==1){
 
             if(saveAir()){
@@ -58,17 +57,18 @@ public enum Trolls implements swim,talk {
                 return true;
             }else {
                 if(this.hp>1){
-                    Trolls.SMUS.badEmotion();
+                    Say(SayGeneral.BEDEMOTIONS.getContent(),true);
                     hp=hp-1;
                     return true;
                 }else {
-                    System.out.println("На Муми-тролля нахлынула вода и он утонул");
+                    Say(SayGeneral.BEDEMOTIONS.getContent(),true);
                     return false;
+
                 }
             }
 
         }else {
-            SMUS.goodEmotion();
+            Say(SayGeneral.GOODEMOTIONS.getContent(),true);
             return true;
         }
 
@@ -76,88 +76,41 @@ public enum Trolls implements swim,talk {
     }
 
     @Override
-    public void getWater(River river,River river2) {
-        this.river=river;
-        this.river2=river2;
-
-    }
-
-    @Override
-    public void startSwim(int k) {
+    public boolean startSwim(int k,River river,LoginType loginType, TypeOfSwimming typeOfSwimming,SayGeneral swimmerCondition) {
+        int liveTrol=1;
+        System.out.println(toString()+" "+loginType.getContent()+ " и поплыл "+ typeOfSwimming.getName());
+        Say(swimmerCondition.getContent(),false);
         for(int i=0; i<k;++i){
-            if (randomsi.random(0,30)<=1){
-                river2.setClear(false);
-            }
-            if (rowing()){
+            if (this.rowing(river)){
                 if (i==k-1){
-                    System.out.println("Муми-троль смог достать шляпу из воды");
-                    if (Trolls.SMUS.chekWater()){
-                        System.out.println("Смусмурик: Ура. Муми-троль ты успел достать шляпу прежде чем она заразила реку");
-                    }else {
-                        System.out.println("Смусмурик: К сожалению другая река была заражена, но поскольку шляпу удалось достать вскоре загрзненую воду смоет течение");
-                    }
-
-
-
+                    Say(SayGeneral.ENDSWIM.getContent(), false);
+                }else if(i==k/2){
+                    Say(SayGeneral.Midstream.getContent(),false);
                 }
             }else {
-                System.out.println("Теперь река будет заражена и вероятно на планете больше не будет жизни");
+                liveTrol=0;
                 break;
             }
-
         }
-    }
-
-    @Override
-    public void question() {
-        if(toString()=="Смусмурик"){
-            System.out.println("Смусмурик: Муми-троль, случилось ужасное. Волшебная шляпа упала в реку, если ее не достать мир не будет прежним.Что будем делать ? ");
-            Trolls.MOOMIN.ansver();
-        }else{
-
-        }
-
-    }
-
-    @Override
-    public void ansver() {
-        if(toString()=="Муми-троль"){
-            System.out.println("Муми-троль: О нет, это ужасно. Мы должны сделать все чтоб спасти эту планету. Я готов пожертвовать собой и отправиться в плавь зе ней ");
-
-        }
-
-    }
-
-    @Override
-    public void badEmotion() {
-        if(toString()=="Смусмурик"){
-            System.out.println("Смусмурик: О нет, на Муми-троля нахлынула вода, он може  утонуть");
-            Trolls.MOOMIN.badEmotion();
+        if (liveTrol==1){
+            return true;
         }else {
-            System.out.println("Муми-троль: у меня осталось "+ Trolls.MOOMIN.hp+" жизней");
+            return false;
         }
-
-
-
     }
 
     @Override
-    public void goodEmotion() {
-        if(toString()=="Смусмурик"){
-            System.out.println("Смусмурик: Ура, Муми-троль подбирается все ближе к шляпе");
+    public void Say(String content, boolean revers) {
+        if (revers==false){
+            System.out.println(this.toString()+": "+content);
+        }else{
+            if(this==Trolls.SMUS){
+                System.out.println(Trolls.MOOMIN.toString()+": "+ content);
+
+            }else {
+                System.out.println(Trolls.SMUS.toString()+": "+ content);
+            }
         }
 
-
     }
-    private boolean chekWater(){
-        return this.river.equals(this.river2);
-
-    }
-
-
-
-
-
-
-
 }

@@ -3,28 +3,46 @@ import tools.*;
 
 public class River extends Nature {
     private int waves;
-    private String wavesName;
     private boolean clear;
-    public River(int temperature,String name, int wind){
+    private String namePlanet;
+    public River(int temperature,String name, int wind,String namePlanet){
+        this.namePlanet=namePlanet;
         clear=true;
         setTemperature(randomsi.random(temperature-5,temperature+5));
         setName(name);
 
         if (wind>20 ){
             waves=3;
-            wavesName="сильными волнами";
+            getInfo(name,"сильными","сильный грохот");
             setSound("сильный грохот");
 
         }else if (wind>10){
             waves=2;
-            wavesName="средними волнами";
+            getInfo(name,"средними волнами","небольшой шум");
             setSound("небольшой шум");
         }else {
             waves=1;
-            wavesName="слабыми волнами";
+            getInfo(name,"слабыми волнами","слабый звук характерный течению");
             setSound("слабый звук характерный течению");
         }
-        System.out.println("На этой планете есть река под названием "+name+" c "+wavesName+".Температура ее " +getTemperature()+" градусов"+". От реки исходит "+getSound());
+    }
+    public River(String namePlanet,int wind){
+        clear=true;
+        this.namePlanet=namePlanet;
+        if (wind>20 ){
+            waves=3;
+        }else if (wind>10){
+            waves=2;
+        }else {
+            waves=1;
+        }
+    }
+    public void getInfo(String name,String wavesName,String sound){
+        System.out.println("На планете "+namePlanet+ " есть река под названием "+name+" c "+wavesName+".Температура ее " +getTemperature()+" градусов"+". От реки исходит "+sound);
+        getInfo();
+    }
+    public void getInfo(){
+        System.out.println("У этой реки есть продолжение, от состояния воды в этой части зависит будущее планеты "+  namePlanet);
     }
     public int getCondition(){
         if (randomsi.random(0,10)+waves<6){
@@ -46,6 +64,6 @@ public class River extends Nature {
 
     @Override
     public int hashCode() {
-        return waves;
+        return this.waves;
     }
 }

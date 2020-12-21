@@ -1,12 +1,15 @@
 package inter;
 
+import enums.LoginType;
+import enums.SayGeneral;
+import enums.TypeOfSwimming;
 import world.River;
 
 public interface swim {
     boolean saveAir();
-    boolean rowing();
-    void getWater(River river,River river2);
-    void startSwim(int k);
+    boolean rowing(River river);
+    boolean startSwim(int k, River river, LoginType loginType, TypeOfSwimming typeOfSwimming, SayGeneral swimmerСondition);
+
 
 
 }
